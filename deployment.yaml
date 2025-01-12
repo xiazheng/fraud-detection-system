@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fds-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fds-app
+  template:
+    metadata:
+      labels:
+        app: fds-app
+    spec:
+      containers:
+        - name: fds-app
+          image: 061051229897.dkr.ecr.us-east-1.amazonaws.com/fds-app:latest
+          env:
+            - name: AWS_REGION
+              value: us-east-1
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
