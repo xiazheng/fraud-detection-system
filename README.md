@@ -25,9 +25,10 @@ Using messaging service SQS, cloud-native logging service Cloudwatch, cluster EK
    eksctl create cluster --name fds-eks2  --region us-east-1 --nodegroup-name standard-workers --node-type t2.medium --nodes 2 --nodes-min 1 --nodes-max 4 --managed --version 1.31
    ```
 5. Add AmazonSQSFullAccess policy for EKS NodeInstance role of the fds-eks2 cluster in aws web portal.
+
 6. Create queue fds-in-queue, fds-out-queue and fds-dl-queue (dead letter queue for fds-in-queue)
    Either in SQS web portal or using java class org.zheng.fds.util.SQSQueueSetup.
-   If the java class is used command "aws sts get-session-token" to get the temp credentials and update the correspondent values in class SqsServerWrapper for AwsSessionCredentials.create method.
+   
 7. Update kubeconfig file
    ```bash
    aws eks --region us-east-1 update-kubeconfig --name fds-eks2
