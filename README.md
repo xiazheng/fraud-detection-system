@@ -24,6 +24,9 @@ Using messaging service SQS, cloud-native logging service Cloudwatch, cluster EK
    ```bash
    eksctl create cluster --name fds-eks2  --region us-east-1 --nodegroup-name standard-workers --node-type t2.medium --nodes 2 --nodes-min 1 --nodes-max 4 --managed --version 1.31
    ```
+   Set cluster **Autoscaling** by adding AmazonEKSBlockStoragePolicy, AmazonEKSComputePolicy, AmazonEKSLoadBalancingPolicy and AmazonEKSNetworkingPolicy to cluster IAM role. E.g. eksctl-fds-eks2-cluster-ServiceRole-t1g4DdDeeqeL.
+   And switch on **EKS Auto Mode** in EKS web portal.
+   
 5. Add AmazonSQSFullAccess policy for EKS NodeInstance role of the fds-eks2 cluster in aws web portal.
 
 6. Create queue fds-in-queue, fds-out-queue and fds-dl-queue (dead letter queue for fds-in-queue)
